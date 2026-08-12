@@ -19,7 +19,7 @@ from consulting_deck.themes import THEMES, resolve
 def test_distribution_metadata_uses_public_identity():
     package = metadata("consulting-deck")
     assert package["Name"] == "consulting-deck"
-    assert package["Version"] == "0.1.0"
+    assert package["Version"] == "0.1.1"
     assert package["Author"] == "BotTony329"
 
 

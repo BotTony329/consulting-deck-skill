@@ -1,4 +1,4 @@
-# Narrative patterns
+# Narrative patterns and storyline skeletons
 
 Slide-by-slide skeletons and the recurring slide modules, drawn from two real
 engagement decks: a 78-slide external market research report and a 51-slide AI

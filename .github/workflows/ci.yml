@@ -33,3 +33,30 @@ jobs:
           consulting-deck build examples/market_entry.json -o "${{ runner.temp }}/deck-json.pptx" --check
           consulting-deck titles "${{ runner.temp }}/deck-yaml.pptx"
           consulting-deck themes
+
+  skills-install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.20"
+      - name: install through the skills CLI and run the bundled engine
+        run: |
+          test_dir="$(mktemp -d)"
+          cd "$test_dir"
+          npx --yes skills@1.5.22 add "$GITHUB_WORKSPACE" --skill consulting-deck --agent codex --copy -y
+          skill_dir="$test_dir/.agents/skills/consulting-deck"
+          test -f "$skill_dir/SKILL.md"
+          test -f "$skill_dir/pyproject.toml"
+          test -f "$skill_dir/src/consulting_deck/deck.py"
+          test -f "$skill_dir/references/design-system.md"
+          python -m venv runtime
+          runtime/bin/python -m pip install -e "$skill_dir[yaml]"
+          runtime/bin/consulting-deck --version
+          runtime/bin/consulting-deck themes
+          runtime/bin/consulting-deck build "$skill_dir/examples/market_entry.yaml" -o deck.pptx --theme editorial --check

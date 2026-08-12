@@ -2,8 +2,8 @@
 
 Every slide is drawn from scratch onto a blank canvas. There is no template
 file, no inherited master, and no layout placeholders — which means this design
-is defined entirely by the constants in `scripts/deckkit.py` and belongs to
-whoever ships it.
+is defined entirely by `src/consulting_deck/deck.py` and
+`src/consulting_deck/themes.py` and belongs to whoever ships it.
 
 Read this when you need to place shapes directly, extend the system with a new
 slide type, or re-skin it for a brand.

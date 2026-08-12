@@ -1,7 +1,7 @@
 """consulting-deck — build consulting slide decks that argue instead of describe.
 
 Two things ship here: a *method* (framework-driven narrative, message-first
-titles, sourced numbers, statement slides) documented in skill/, and an
+titles, sourced numbers, statement slides) documented in SKILL.md, and an
 *engine* (this package) that renders it as .pptx.
 
     from consulting_deck import Deck
@@ -21,6 +21,6 @@ from .deck import COLORS, Deck, set_font
 from .check import check, storyline
 from .spec import SpecError, build, load
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __all__ = ["Deck", "COLORS", "set_font", "check", "storyline",
            "build", "load", "SpecError", "__version__"]

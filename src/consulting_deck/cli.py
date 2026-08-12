@@ -48,7 +48,7 @@ def main(argv=None) -> int:
         print("slide types and their fields:\n")
         for name, fields in SLIDE_TYPES.items():
             print(f"  {name:<9} {fields}")
-        print("\nSee skill/references/design-system.md for geometry and palette.")
+        print("\nSee references/design-system.md for geometry and palette.")
         return 0
 
     if args.cmd == "themes":

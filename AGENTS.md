@@ -1,7 +1,7 @@
 # consulting-deck — agent operating guide
 
 Build .pptx decks that **argue** instead of describe. This file is the short form;
-the full method lives in `skill/SKILL.md` and its `skill/references/`. Read those
+the full method lives in `SKILL.md` and `references/`. Read those
 before building anything non-trivial.
 
 ## Install

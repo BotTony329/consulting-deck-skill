@@ -1,4 +1,4 @@
-# Argument discipline
+# Argument discipline and evidence review
 
 The layout catalog governs how a slide looks. This governs whether it earns its
 place. Read it when scoping a deck, when a slide feels like it's presenting data
@@ -183,7 +183,7 @@ reach with you, which is how both of the source decks are built.
 Run these three before delivering. They catch different failures.
 
 **Title-only read.** Extract every slide's title and assertion, in order, and
-read them as continuous prose (`check_deck.py --titles` prints this). They should
+read them as continuous prose (`consulting-deck titles` prints this). They should
 form a coherent argument on their own.
 
 Fails: *Market · Customer · Technology · Competition · Conclusion.*

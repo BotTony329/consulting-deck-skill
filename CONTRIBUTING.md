@@ -4,7 +4,7 @@ Bug reports and theme submissions are welcome. A few things that will save us bo
 
 ## The thing to know first
 
-Two parts live here and they have different bars. The **method** (`skill/`) changes
+Two parts live here and they have different bars. The **method** (`SKILL.md` and `references/`) changes
 slowly and only with a reason — it encodes practice that survives contact with a
 skeptical audience, not personal preference. The **engine** (`src/`) is ordinary
 Python and moves faster.

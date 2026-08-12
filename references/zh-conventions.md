@@ -1,4 +1,4 @@
-# Chinese-language deck conventions
+# Chinese-language consulting deck conventions
 
 Read this when the deck is in Chinese. Match the language of the user's request;
 these decks are frequently Chinese content inside an English-titled template, and

@@ -1,11 +1,12 @@
 # Consulting Deck Skill
 
 [![CI](https://github.com/BotTony329/consulting-deck-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/BotTony329/consulting-deck-skill/actions/workflows/ci.yml)
+[![skills.sh](https://skills.sh/b/BotTony329/consulting-deck-skill)](https://skills.sh/BotTony329/consulting-deck-skill)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-3776AB)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Consulting Deck Skill is a cross-agent presentation system that turns structured
-business analysis into editable, consulting-grade PowerPoint decks.
+Consulting Deck Skill is a cross-agent AI skill for turning structured business
+analysis into consulting-grade PowerPoint presentations.
 
 This is not just a prompt. It is a reusable presentation-generation workflow with
 consulting-style information hierarchy, structured slide planning, six visual themes,
@@ -65,7 +66,20 @@ entry points so their guidance cannot drift.
 | GitHub Copilot | `.github/copilot-instructions.md` |
 | Other agents | YAML/JSON spec plus the CLI |
 
-## Installation
+## Install as an Agent Skill
+
+Install the complete skill from GitHub with the current skills CLI (Node.js 22.20 or
+newer):
+
+```bash
+npx skills add BotTony329/consulting-deck-skill --skill consulting-deck
+```
+
+The CLI installs GitHub-hosted Agent Skills for supported AI coding agents. The
+installed skill includes the workflow, references, Python engine, CLI, themes, and
+examples; `SKILL.md` explains the isolated Python setup used at runtime.
+
+## Install the Python package directly
 
 Clone the repository and install it in editable mode:
 
@@ -171,8 +185,9 @@ pdftoppm -png -r 70 deck.pdf page
 Project layout:
 
 ```text
-src/consulting_deck/  Python engine, themes, CLI, spec loader, and checker
-skill/                Full agent workflow and reference guidance
+SKILL.md               Canonical agent workflow and runtime instructions
+references/            Design, narrative, evidence, and language guidance
+src/consulting_deck/   Python engine, themes, CLI, spec loader, and checker
 scripts/              Agent-file synchronization and skill packaging
 examples/             Working Python, YAML, and JSON examples
 tests/                Unit and regression tests
