@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "consulting-deck"
+version = "0.1.0"
+description = "Cross-agent AI skill for generating consulting-grade PowerPoint decks."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+authors = [{name = "BotTony329"}]
+keywords = ["powerpoint", "pptx", "slides", "consulting", "presentation",
+            "ai-agent", "claude-skill", "agents-md"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: End Users/Desktop",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Office/Business",
+]
+dependencies = ["python-pptx>=0.6.21"]
+
+[project.optional-dependencies]
+yaml = ["PyYAML>=5.4"]
+dev = ["pytest>=7", "PyYAML>=5.4"]
+
+[project.urls]
+Homepage = "https://github.com/BotTony329/consulting-deck-skill"
+Issues = "https://github.com/BotTony329/consulting-deck-skill/issues"
+
+[project.scripts]
+consulting-deck = "consulting_deck.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

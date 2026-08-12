@@ -1,0 +1,35 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install -e ".[dev]"
+      - run: pytest -q
+      # The agent entry files are generated; a stale one is a silent
+      # documentation bug for everyone whose agent reads that file.
+      - run: python scripts/sync_agent_files.py --check
+      - name: build the bundled example end to end
+        run: |
+          consulting-deck --version
+          consulting-deck build examples/market_entry.yaml -o "${{ runner.temp }}/deck-yaml.pptx" --check
+          consulting-deck build examples/market_entry.json -o "${{ runner.temp }}/deck-json.pptx" --check
+          consulting-deck titles "${{ runner.temp }}/deck-yaml.pptx"
+          consulting-deck themes

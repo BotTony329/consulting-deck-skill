@@ -1,0 +1,80 @@
+lang: en
+theme: editorial
+slides:
+- type: title
+  title: Market entry study
+  subtitle: Ready-to-drink tea · China
+  kicker: External research
+- type: section
+  number: 1
+  title: Market size and demand
+  scope: What the category looks like today, and who is buying
+- type: content
+  category: Industry status
+  message: The category is large, growing fast, and priced down.
+  body:
+  - Revenue reached ¥181bn in 2022, up 108% since 2018
+  - - - Mid-tier brands hold 70% of outlets
+      - true
+    - - ' — the most crowded tier'
+      - false
+  - Average price fell 19% between 2021 and 2023
+  source: CIC, Xinhua
+  body_width: 5.4
+  chart:
+    kind: column
+    categories:
+    - '2018'
+    - '2019'
+    - '2020'
+    - '2021'
+    - '2022'
+    values:
+    - 870
+    - 1060
+    - 1140
+    - 1450
+    - 1810
+    at:
+    - 6.6
+    - 2.75
+    - 5.2
+    - 3.1
+    unit: ¥100m
+    callout:
+      text: +108%
+      at:
+      - 8.4
+      - 3.15
+- type: stat
+  number: '108'
+  unit: '%'
+  caption: growth in market size over four years — and the reason margin is compressing
+  source: CIC
+- type: content
+  category: Implication
+  message: Category growth alone is not a reason to enter.
+  body:
+  - Growth on this scale attracts entrants and compresses margin
+  - - - Position and differentiation decide whether entry pays
+      - true
+  source: Analysis
+- type: columns
+  title: Opportunities and threats
+  category: Synthesis
+  columns:
+  - head: Opportunities
+    items:
+    - Category still expanding
+    - Lower-tier cities barely contested
+    - High repeat purchase
+  - head: Threats
+    items:
+    - Strong incumbents in every tier
+    - Low barriers to entry
+    - Mid-tier margin compression
+  source: Analysis
+- type: closing
+  org: Your organisation
+  contact: yourdomain.com
+  note: Prepared as a decision aid. Figures sourced per slide.

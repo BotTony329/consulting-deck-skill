@@ -1,0 +1,104 @@
+---
+description: Build consulting slide decks that argue instead of describe
+globs: ['**/*.pptx', '**/*deck*', '**/*slide*']
+alwaysApply: false
+---
+
+<!-- Generated from AGENTS.md by scripts/sync_agent_files.py. Edit AGENTS.md, not this file. -->
+
+# consulting-deck — agent operating guide
+
+Build .pptx decks that **argue** instead of describe. This file is the short form;
+the full method lives in `skill/SKILL.md` and its `skill/references/`. Read those
+before building anything non-trivial.
+
+## Install
+
+```bash
+pip install -e .            # or: pip install consulting-deck
+consulting-deck themes      # list the visual identities
+consulting-deck schema      # list the slide types and their fields
+```
+
+## Before you build, ask
+
+Do not start placing slides until you know: **audience**, the **decision** the deck
+supports, the **core question** it answers, the **final message**, the **evidence
+standard** that audience demands, and the **visual identity**.
+
+Ask about the theme rather than picking one silently — a board paper for an insurer
+and a research report for a school should not look alike. Offer the shipped themes and
+ask whether the user has a brand accent colour. Unattended, choose one, say which and
+why, and note that a brand colour is a one-line swap.
+
+## The method, in eight rules
+
+1. **Research first.** Gather facts, figures and citations before opening the tooling.
+   A beautiful deck on invented numbers is worthless.
+2. **Write the storyline as text first** — one line per slide, each the *message* of
+   that slide, not its topic. If the lines don't argue toward the recommendation on
+   their own, the deck won't either.
+3. **Titles assert, they don't label.** "Pandemic accelerated consolidation" beats
+   "Pandemic impact". A reader flipping only the assertions should get the argument.
+4. **Push every number down the so-what ladder** until it changes a decision.
+   Description is the first rung; the third is where the fee is earned.
+5. **Every figure carries a source line.** Never invent one. If a number has no
+   source, cut it or mark it `DATA REQUIRED`.
+6. **Keep claim types distinct**: fact / inference / hypothesis / recommendation.
+   Restructure supplied material aggressively; never silently invent.
+7. **One number per section gets a whole slide** at 190pt. It is what people remember.
+8. **One message per slide, ≤5 supporting lines.** A paragraph over ~80 characters
+   wants to be a chart, a table, or an appendix page.
+
+## Build
+
+Spec route — for any agent that can write a file and run a command:
+
+```yaml
+# deck.yaml
+lang: en
+theme: slate
+slides:
+  - {type: title, title: Market entry study, subtitle: RTD tea · China}
+  - {type: section, number: 1, title: Market size, scope: What the category looks like}
+  - type: content
+    category: Industry status
+    message: The category is large, growing fast, and priced down.
+    body: ["Revenue reached ¥181bn in 2022, up 108% since 2018"]
+    source: CIC, Xinhua
+    body_width: 5.4
+    chart: {kind: column, categories: ["2018","2022"], values: [870,1810],
+            at: [6.6,2.75,5.2,3.2], unit: ¥100m}
+  - {type: stat, number: "108", unit: "%", caption: growth over four years, source: CIC}
+  - {type: closing, org: Your organisation}
+```
+
+```bash
+consulting-deck build deck.yaml -o deck.pptx --check
+```
+
+Python route — full control:
+
+```python
+from consulting_deck import Deck
+d = Deck(lang="en", theme={"base": "slate", "accent": "#7A1FA2"})
+d.title_slide("Market entry study", "RTD tea · China")
+d.big_stat("108", "growth over four years", unit_suffix="%", source="CIC")
+d.save("deck.pptx")
+```
+
+## Verify — all three gates
+
+```bash
+consulting-deck check deck.pptx     # off-canvas text, overflow, missing sources
+consulting-deck titles deck.pptx    # read the assertions as prose: do they argue?
+soffice --headless --convert-to pdf deck.pptx && pdftoppm -png -r 70 deck.pdf p
+```
+
+The rendered output is the truth, not the code that produced it. Look at the images.
+
+## Never
+
+Put another company's logo, wordmark, tagline, licensed photography, or copied layout
+compositions into a deck for someone who doesn't own them. Method transfers between
+decks; visual identity does not.
