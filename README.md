@@ -5,8 +5,15 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-3776AB)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+> **In one sentence:** Consulting Deck Skill is a free, MIT-licensed AI skill
+> (Python engine + CLI + agent instructions) that turns structured business
+> analysis into an *editable, consulting-grade* `.pptx` — message-first titles,
+> sourced numbers, six real layout themes — across Claude, Codex, Gemini,
+> Cursor, Copilot and more.
+
 Consulting Deck Skill is a cross-agent AI skill for turning structured business
-analysis into consulting-grade PowerPoint presentations.
+analysis into consulting-grade PowerPoint presentations. Current version:
+[0.1.1 (2026-08-12)](CHANGELOG.md).
 
 This is not just a prompt. It is a reusable presentation-generation workflow with
 consulting-style information hierarchy, structured slide planning, six visual themes,
@@ -37,6 +44,31 @@ not exported as flattened slide images.
 - Not a single hardcoded visual style or a six-colour theme pack
 - Not a prompt-only repository
 - Not a collection of proprietary consulting or client slides
+
+## When should you use it?
+
+Use this skill whenever the deliverable is a `.pptx` that has to persuade a
+client or an executive — even if nobody says the word "consulting":
+
+- Market research reports, industry analyses, competitive landscapes
+- PEST / SWOT / 4P / value-chain analyses
+- Digital transformation and AI proposals, bidding or pitch decks
+- Turning raw evidence (screenshots, interview notes, survey exports, scraped
+  data) into slides
+- Restructuring an existing deck: "make it less cluttered", "combine these
+  pages", "make this look professional"
+- Chinese-language client decks ("外部调研报告", "行业分析", "投标方案") —
+  CJK font pairings and language conventions are built in
+
+## How is this different from templates or a prompt?
+
+| | Static PowerPoint templates | Prompt-only repos | Consulting Deck Skill |
+|---|---|---|---|
+| Output | Slides you fill in manually | Unreliable, model-dependent | Editable `.pptx` from Python, YAML, or JSON — same engine every run |
+| Information hierarchy | Decorative | Ad hoc | Message-first titles, assertion storyline, evidence separated from inference |
+| Visual system | One fixed look | Drifts per generation | Six themes that change *layout behaviour*, not just colours; per-deck accent overrides |
+| Quality control | None | Eyeball it | Mechanical checks: off-canvas text, overflow, unsourced figures, repetitive layouts |
+| Portability | PowerPoint only | One agent | 7+ coding agents from one source of truth (`AGENTS.md`), plus a standalone CLI |
 
 ## Key features
 
@@ -210,6 +242,66 @@ or user environment, not to this Python package.
 
 Do not place client-confidential material, third-party logos, licensed photography, or
 copied proprietary slide layouts in public examples or contributions.
+
+## FAQ
+
+### Is it free? What's the license?
+
+Yes — MIT-licensed open source, free for commercial and personal use. There is
+no hosted service and nothing to pay for; you run the Python engine and the
+skill files yourself. See [LICENSE](LICENSE).
+
+### Does it need an API key, network access, or a specific AI provider?
+
+No. The Python package requires no API key, contains no networking client,
+uploads no data, and spawns no subprocesses. It works with whatever coding
+agent (or no agent at all — just the CLI) you already have; any research or
+rendering happens through your agent's own tools, not this package.
+
+### Is the output a real, editable PowerPoint file?
+
+Yes. Decks are built with `python-pptx` as native 16:9 PowerPoint files —
+editable shapes, text and tables, message-first titles, explicit source lines —
+not flattened slide images. You can keep editing them in PowerPoint, Keynote,
+or Google Slides.
+
+### Which agents does it work with?
+
+Claude (`CLAUDE.md`), OpenAI Codex and other `AGENTS.md` readers, Gemini,
+Cursor, Cline/Roo, Windsurf, and GitHub Copilot — all generated from one
+source of truth so their guidance cannot drift. Any other agent (or a human)
+can use the YAML/JSON specification and the CLI directly. See the
+[supported agents table](#supported-agents).
+
+### Which Python versions are supported?
+
+Python 3.9 through 3.13. Every push is tested across the full 3.9–3.13 matrix
+in GitHub Actions CI, alongside the regression test suite and the agent-file
+drift check.
+
+### Can I use my own brand identity?
+
+Yes. Pick one of the six structural themes and override the accent per deck
+(`theme={"base": "slate", "accent": "#7A1FA2"}`) — accents stay scarce by
+design, and text automatically falls back to a readable foreground on dark
+fields. Themes change layout behaviour (content field treatment, divider and
+statement style, rule weight, eyebrow casing), so brand-neutral output stays
+professional while remaining skinnable.
+
+### Can it build decks in Chinese?
+
+Yes. All themes ship Arial/CJK font pairings, the skill includes Chinese
+consulting-language conventions (`references/zh-conventions.md`), and the
+workflow triggers on Chinese briefs such as 外部调研报告, 行业分析, and
+投标方案.
+
+### How do I verify a deck before sending it?
+
+Two layers: `consulting-deck build --check` runs the mechanical validator
+(off-canvas text, likely overflow, unsourced figures, repetitive layouts), and
+`consulting-deck titles deck.pptx` prints the title storyline for review. If
+LibreOffice and Poppler are installed, render to PDF/PNG for a final visual
+inspection — the checker deliberately does not replace your eyes.
 
 ## Contributing
 
